@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Books I've Read</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/book-sorting.js" defer></script>
+</head>
+<body id="booklist">
+    <%- include('partials/header') %>
+
+    <main>
+        <header>
+            <h1>Books I've Read</h1>
+            <p>Welcome to my personal book tracker! Here you can explore all the books I've read, complete with detailed notes and ratings. You can filter books by title, date read, or rating.</p>
+        </header>
+        <p id="sorters">Sort by
+            <a href="/book?sort=title" id="sort-title">Title,</a>
+            <a href="/book?sort=date" id="sort-date">Newest,</a>or
+            <a href="/book?sort=rating" id="sort-rating"> Best</a>.
+        </p>
+        <a href="/add-book" class="btn-add">Add a New Book</a>
+        <hr>
+        <div id="allbooks">
+            <% books.forEach(book => { %>
+                <div class="abook" data-title="<%= book.title %>" data-date="<%= book.date_read %>" data-rating="<%= book.rating %>">
+                    <h2><a href="/book/<%= book.id %>"><%= book.title %></a></h2>
+                    <p><strong>Author:</strong> <%= book.author %></p>
+                    <p><strong>Rating:</strong> <%= book.rating %></p>
+                    <p><strong>Date Read:</strong> <%= book.date_read %></p>
+                    <img src="<%= book.cover_url %>" alt="Cover image of <%= book.title %>">
+                    <p><%= book.review %></p>
+                    <a href="/edit-book/<%= book.id %>" class="btn-edit">Edit</a>
+                    <a href="/delete-book/<%= book.id %>" class="btn-delete" onclick="return confirm('Are you sure you want to delete this book?')">Delete</a>
+                </div>
+            <% }) %>
+        </div>
+    </main>
+    
+    <%- include('partials/footer') %>
+</body>
+</html>

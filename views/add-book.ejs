@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Add New Book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main>
+        <h1>Add New Book</h1>
+        <form action="/add-book" method="POST">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+            
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required>
+            
+            <label for="rating">Rating:</label>
+            <input type="number" id="rating" name="rating" step="0.1" min="0" max="10" required>
+            
+            <label for="date_read">Date Read:</label>
+            <input type="date" id="date_read" name="date_read" required>
+            
+            <label for="review">Review:</label>
+            <textarea id="review" name="review"></textarea>
+            
+            <label for="cover_url">Cover URL:</label>
+            <input type="url" id="cover_url" name="cover_url">
+            
+            <button type="submit">Add Book</button>
+        </form>
+    </main>
+    
+    <%- include('partials/footer') %>
+</body>
+</html>
