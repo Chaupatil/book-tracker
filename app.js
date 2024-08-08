@@ -1,16 +1,13 @@
-// Required modules
 const express = require('express');
 const bodyParser = require('body-parser');
 const pool = require('./db');
 const app = express();
 const port = 3000;
 
-// Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-// Routes
 app.get('/', async (req, res) => {
     try {
         const { rows: books } = await pool.query('SELECT * FROM books ORDER BY rating DESC');
